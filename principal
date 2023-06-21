@@ -1,0 +1,182 @@
+//
+//  AnimalsView.swift
+//  EmojiBarAnimations
+//
+//  Created by Kaic Cesar on 19/06/23.
+//
+
+import SwiftUI
+
+struct AnimalsView: View {
+    
+    @State var tag: Int = 1
+    @State var isSwingin = false
+    
+    @State var condition: Bool = true
+    @State var UIColor: Int = 1
+    
+    var body: some View {
+        VStack{
+            VStack(alignment: .center) {
+                if tag == 1 {
+                    owlView
+                    Spacer(minLength: 20)
+                    Text("Você escolheu a").font(Font.system(.title3))
+                    Text("CORUJA").font(Font.system(.title).bold())
+                    
+                }
+                else if tag == 2 {
+                    pandaView
+                    Spacer(minLength: 20)
+                    Text("Você escolheu o").font(Font.system(.title3))
+                    Text("PANDA").font(Font.system(.title).bold())
+                    
+                    
+                }
+                
+                else if tag == 3 {
+                    dogView
+                    Spacer(minLength: 20)
+                    Text("Você escolheu o").font(Font.system(.title3))
+                    Text("CACHORRO").font(Font.system(.title).bold())
+                    
+                    
+                }
+                
+                else {
+                    unicornView
+                    Spacer(minLength: 20)
+                    Text("Você escolheu o").font(Font.system(.title3))
+                    Text("UNICÓRNIO").font(Font.system(.title).bold())
+                    
+                    
+                }
+            }
+            .padding(.top, 170)
+            
+            
+            VStack {
+                ZStack {
+                    Rectangle()
+                        .frame(maxWidth: .infinity, maxHeight: 150)
+                        .ignoresSafeArea()
+                        .padding(.top, 280)
+                    
+                    
+                    
+                    HStack(spacing: 40) {
+                        
+                        
+                        Button("🦉") {
+                            self.tag = 1
+                            self.UIColor = 1
+                            
+                            
+                            
+                        }
+                        .font(Font.system(size: 50))
+                        
+                        Button("🐼") {
+                            self.tag = 2
+                            self.UIColor = 2
+                            
+                        }
+                        .font(Font.system(size: 50))
+                        
+                        
+                        Button("🐶") {
+                            self.tag = 3
+                            self.UIColor = 3
+                        }
+                        .ignoresSafeArea()
+                        .font(Font.system(size: 50))
+                        .background(){
+                            Circle()
+                                .ignoresSafeArea()
+                                .foregroundColor(Color.white)
+                                .frame(maxWidth: 70)
+                                .opacity(0.0)
+                            
+                        }
+                        
+                        Button("🦄") {
+                            self.tag = 4
+                            self.UIColor = 4
+                        }
+                        .font(Font.system(size: 50))
+                    }
+                    .padding(.top, 290)
+                    
+                }
+            }
+            
+        }
+        
+        .background(UIColor == 1 ? Color("CorujaColor") : UIColor == 2 ? Color("PandaColor") : UIColor == 3 ? Color("DogColor") : Color("UnicornColor"))
+        
+        
+    }
+}
+
+
+extension AnimalsView {
+    var owlView: some View {
+        self.tag = 1
+        return Text("🦉")
+            .font(Font.system(size: 150))
+            .rotationEffect(Angle.degrees(isSwingin ? 15 : -15))
+            .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
+            .onAppear {
+                isSwingin.toggle()
+            }
+    }
+}
+
+extension AnimalsView {
+    var pandaView: some View {
+        self.tag = 2
+        
+        return Text("🐼")
+            .font(Font.system(size: 150))
+            .rotationEffect(Angle.degrees(isSwingin ? 15 : -15))
+            .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
+            .onAppear {
+                isSwingin.toggle()
+            }
+        
+        
+    }
+}
+
+extension AnimalsView {
+    var dogView: some View {
+        self.tag = 3
+        return Text("🐶")
+            .font(Font.system(size: 150))
+            .rotationEffect(Angle.degrees(isSwingin ? 15 : -15))
+            .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
+            .onAppear {
+                isSwingin.toggle()
+            }
+        
+    }
+}
+extension AnimalsView {
+    var unicornView: some View {
+        self.tag = 4
+        return Text("🦄")
+            .font(Font.system(size: 150))
+            .rotationEffect(Angle.degrees(isSwingin ? 15 : -15))
+            .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true))
+            .onAppear {
+                isSwingin.toggle()
+            }
+        
+    }
+}
+
+struct AnimalsView_Previews: PreviewProvider {
+    static var previews: some View {
+        AnimalsView()
+    }
+}
